@@ -1,7 +1,7 @@
-package com.testingauth.auth_service.service;
+package com.testing.backend.service;
 
-import com.testingauth.auth_service.model.User;
-import com.testingauth.auth_service.repository.UserRepository;
+import com.testing.backend.model.User;
+import com.testing.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,11 +1,11 @@
-package com.testingauth.auth_service.controller;
+package com.testing.backend.controller;
 
-import com.testingauth.auth_service.dto.LoginUserDTO;
-import com.testingauth.auth_service.dto.RegisterUserDTO;
-import com.testingauth.auth_service.model.LoginResponse;
-import com.testingauth.auth_service.model.User;
-import com.testingauth.auth_service.service.AuthenticationService;
-import com.testingauth.auth_service.service.JwtService;
+import com.testing.backend.dto.LoginUserDTO;
+import com.testing.backend.dto.RegisterUserDTO;
+import com.testing.backend.model.LoginResponse;
+import com.testing.backend.model.User;
+import com.testing.backend.service.AuthenticationService;
+import com.testing.backend.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

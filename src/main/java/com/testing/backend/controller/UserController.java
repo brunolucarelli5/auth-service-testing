@@ -1,7 +1,7 @@
-package com.testingauth.auth_service.controller;
+package com.testing.backend.controller;
 
-import com.testingauth.auth_service.model.User;
-import com.testingauth.auth_service.service.UserService;
+import com.testing.backend.model.User;
+import com.testing.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,6 +1,6 @@
-package com.testingauth.auth_service.repository;
+package com.testing.backend.repository;
 
-import com.testingauth.auth_service.model.Role;
+import com.testing.backend.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {

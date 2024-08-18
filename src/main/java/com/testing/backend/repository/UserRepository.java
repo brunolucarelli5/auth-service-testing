@@ -1,6 +1,6 @@
-package com.testingauth.auth_service.repository;
+package com.testing.backend.repository;
 
-import com.testingauth.auth_service.model.User;
+import com.testing.backend.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

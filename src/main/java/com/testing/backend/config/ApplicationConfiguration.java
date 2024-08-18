@@ -1,6 +1,6 @@
-package com.testingauth.auth_service.config;
+package com.testing.backend.config;
 
-import com.testingauth.auth_service.repository.UserRepository;
+import com.testing.backend.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,4 +1,4 @@
-package com.testingauth.auth_service.dto;
+package com.testing.backend.dto;
 
 import lombok.Getter;
 import lombok.Setter;

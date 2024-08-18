@@ -1,4 +1,4 @@
-package com.testingauth.auth_service.config;
+package com.testing.backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

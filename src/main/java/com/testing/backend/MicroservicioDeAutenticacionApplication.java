@@ -1,4 +1,4 @@
-package com.testingauth.auth_service;
+package com.testing.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

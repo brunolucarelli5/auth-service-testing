@@ -1,9 +1,9 @@
-package com.testingauth.auth_service.service;
+package com.testing.backend.service;
 
-import com.testingauth.auth_service.dto.LoginUserDTO;
-import com.testingauth.auth_service.dto.RegisterUserDTO;
-import com.testingauth.auth_service.model.User;
-import com.testingauth.auth_service.repository.UserRepository;
+import com.testing.backend.dto.LoginUserDTO;
+import com.testing.backend.dto.RegisterUserDTO;
+import com.testing.backend.model.User;
+import com.testing.backend.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;

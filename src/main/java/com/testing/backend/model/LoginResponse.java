@@ -1,4 +1,4 @@
-package com.testingauth.auth_service.model;
+package com.testing.backend.model;
 
 import lombok.Getter;
 import lombok.Setter;

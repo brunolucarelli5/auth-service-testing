@@ -1,6 +1,6 @@
-package com.testingauth.auth_service.config;
+package com.testing.backend.config;
 
-import com.testingauth.auth_service.service.JwtService;
+import com.testing.backend.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

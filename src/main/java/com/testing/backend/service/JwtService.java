@@ -1,4 +1,4 @@
-package com.testingauth.auth_service.service;
+package com.testing.backend.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
