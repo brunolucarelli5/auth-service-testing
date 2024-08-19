@@ -1,6 +1,7 @@
 package com.testing.backend.service;
 
 import com.testing.backend.dto.LoginUserDTO;
+import com.testing.backend.dto.LoginUserEmailDTO;
 import com.testing.backend.dto.RegisterUserDTO;
 import com.testing.backend.model.User;
 import com.testing.backend.repository.UserRepository;
@@ -47,6 +48,18 @@ public class AuthenticationService {
         );
 
         return userRepository.findByUsername(input.getUsername())
+                .orElseThrow();
+    }
+
+    public User authenticateWithEmail(LoginUserEmailDTO input) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        input.getEmail(),
+                        input.getPassword()
+                )
+        );
+
+        return userRepository.findByEmail(input.getEmail())
                 .orElseThrow();
     }
 }

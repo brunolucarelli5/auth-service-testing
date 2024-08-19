@@ -1,6 +1,7 @@
 package com.testing.backend.controller;
 
 import com.testing.backend.dto.LoginUserDTO;
+import com.testing.backend.dto.LoginUserEmailDTO;
 import com.testing.backend.dto.RegisterUserDTO;
 import com.testing.backend.model.LoginResponse;
 import com.testing.backend.model.User;
@@ -33,6 +34,17 @@ public class AuthenticationController {
     @PostMapping("/login")
     public ResponseEntity<Object> authenticate(@RequestBody LoginUserDTO loginUserDTO) {
         User authenticatedUser = authenticationService.authenticate(loginUserDTO);
+
+        String jwtToken = jwtService.generateToken(authenticatedUser);
+
+        LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(jwtService.getExpirationTime());
+
+        return ResponseEntity.ok(loginResponse);
+    }
+
+    @PostMapping("/login/email")
+    public ResponseEntity<Object> authenticateWithEmail(@RequestBody LoginUserEmailDTO loginUserEmailDTO) {
+        User authenticatedUser = authenticationService.authenticateWithEmail(loginUserEmailDTO);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
