@@ -32,23 +32,20 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> authenticate(@RequestBody LoginUserDTO loginUserDTO) {
-        User authenticatedUser = authenticationService.authenticate(loginUserDTO);
-
-        String jwtToken = jwtService.generateToken(authenticatedUser);
-
-        LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(jwtService.getExpirationTime());
-
-        return ResponseEntity.ok(loginResponse);
-    }
-
-    @PostMapping("/login/email")
     public ResponseEntity<Object> authenticateWithEmail(@RequestBody LoginUserEmailDTO loginUserEmailDTO) {
         User authenticatedUser = authenticationService.authenticateWithEmail(loginUserEmailDTO);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
-        LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(jwtService.getExpirationTime());
+        String username = authenticatedUser.getUsername();
+
+        String role = authenticatedUser.getRole().getName();
+
+        LoginResponse loginResponse = new LoginResponse()
+                .setToken(jwtToken)
+                .setExpiresIn(jwtService.getExpirationTime())
+                .setUsername(username)
+                .setRole(role);
 
         return ResponseEntity.ok(loginResponse);
     }

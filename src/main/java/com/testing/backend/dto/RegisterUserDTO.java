@@ -3,6 +3,8 @@ package com.testing.backend.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 public class RegisterUserDTO {
@@ -17,6 +19,8 @@ public class RegisterUserDTO {
     private String email;
 
     private String password;
+
+    private String role;
 
     // los getters y setters se generan automáticamente con Lombok
 
