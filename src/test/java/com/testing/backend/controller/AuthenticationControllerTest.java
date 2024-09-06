@@ -50,6 +50,7 @@ public class AuthenticationControllerTest {
         User user = new User();
         user.setUsername("john_doe");
         user.setEmail("john.doe@example.com");
+        user.setName("John");
         user.setLastname("Doe"); // Set the lastname property
         Role role = new Role();
         role.setName("USER");
@@ -61,7 +62,7 @@ public class AuthenticationControllerTest {
         LoginResponse response = new LoginResponse();
         response.setToken(token);
         response.setExpiresIn(expirationTime);
-        response.setUsername("john_doe");
+        response.setName("John");
         response.setRole("USER");
 
         // Configura los mocks para los métodos del servicio
@@ -76,7 +77,7 @@ public class AuthenticationControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.token").value(token))
                 .andExpect(jsonPath("$.expiresIn").value(expirationTime))
-                .andExpect(jsonPath("$.username").value("john_doe"))
+                .andExpect(jsonPath("$.name").value("John"))
                 .andExpect(jsonPath("$.role").value("USER"));
     }
 }

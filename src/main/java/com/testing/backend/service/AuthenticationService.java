@@ -33,7 +33,7 @@ public class AuthenticationService {
 
     public User signup(RegisterUserDTO input) {
 
-        // creo el rol antes de asignarlo al usuario
+        // busco el rol antes de asignarselo al usuario
         Role role = this.roleService.findRoleByName(input.getRole());
 
         User user = new User()
