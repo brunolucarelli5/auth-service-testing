@@ -34,10 +34,10 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String lastname;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false) // agregar , unique = true y buscar como hacerlo en psql
     private String username;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false) // agregar , unique = true
     private String email;
 
     @Column(nullable = false)

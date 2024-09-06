@@ -1,59 +1,95 @@
-/*
 package com.testing.backend.repository;
 
-import com.testing.backend.model.User;
-import com.testing.backend.service.AuthenticationService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import com.testing.backend.dto.RoleDTO;
+import com.testing.backend.model.Role;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 
-import javax.naming.AuthenticationException;
-
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(MockitoJUnitRunner.class)
+@DataJpaTest
+@ActiveProfiles("test")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class RoleRepositoryTest {
 
-    @Mock
-    private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
-    @InjectMocks
-    private AuthenticationService authService;
+    @BeforeEach
+    public void setUp() {
+        roleRepository.deleteAll();
+    }
 
     @Test
-    public void authenticate_validCredentials_returnsJwt() {
-        // Configuración
-        String username = "user";
-        String password = "password";
-        User mockUser = new User(username, passwordEncoder.encode(password));
-        Mockito.when(userRepository.findByUsername(username)).thenReturn(Optional.of(mockUser));
+    public void testFindByName() {
+        // Arrange
+        RoleDTO roleDTO = new RoleDTO();
+        roleDTO.setName("ADMIN");
 
-        // Ejecución
-        String token = authService.authenticateWithEmail(username, password);
+        // Mapear RoleDTO a Role manualmente en la prueba
+        Role role = new Role();
+        role.setName(roleDTO.getName());
 
-        // Verificación
-        assertNotNull(token);
-        assertTrue(token.startsWith("Bearer "));
+        roleRepository.save(role);
+
+        // Act
+        Optional<Role> foundRole = roleRepository.findByName("ADMIN");
+
+        // Assert
+        assertThat(foundRole).isPresent();
+        assertThat(foundRole.get().getName()).isEqualTo("ADMIN");
     }
 
-    @Test(expected = AuthenticationException.class)
-    public void authenticate_invalidCredentials_throwsException() {
-        // Configuración
-        String username = "user";
-        String password = "wrongpassword";
-        User mockUser = new User(username, passwordEncoder.encode("password"));
-        Mockito.when(userRepository.findByUsername(username)).thenReturn(Optional.of(mockUser));
+    @Test
+    public void testFindAll() {
+        // Arrange
+        RoleDTO roleDTO1 = new RoleDTO();
+        roleDTO1.setName("USER");
 
-        // Ejecución
-        authService.authenticate(username, password);
+        Role role1 = new Role();
+        role1.setName(roleDTO1.getName());
 
-        // Verificación se realiza con la excepción
+        roleRepository.save(role1);
+
+        RoleDTO roleDTO2 = new RoleDTO();
+        roleDTO2.setName("ADMIN");
+
+        Role role2 = new Role();
+        role2.setName(roleDTO2.getName());
+
+        roleRepository.save(role2);
+
+        // Act
+        List<Role> roles = roleRepository.findAll();
+
+        // Assert
+        assertThat(roles).hasSize(2);
+        assertThat(roles).extracting(Role::getName).containsExactlyInAnyOrder("USER", "ADMIN");
+    }
+
+    @Test
+    public void testSave() {
+        // Arrange
+        RoleDTO roleDTO = new RoleDTO();
+        roleDTO.setName("MODERATOR");
+
+        // Mapear RoleDTO a Role manualmente en la prueba
+        Role role = new Role();
+        role.setName(roleDTO.getName());
+
+        // Act
+        Role savedRole = roleRepository.save(role);
+
+        // Assert
+        assertThat(savedRole).isNotNull();
+        assertThat(savedRole.getId()).isNotNull();
+        assertThat(savedRole.getName()).isEqualTo("MODERATOR");
     }
 }
-*/
