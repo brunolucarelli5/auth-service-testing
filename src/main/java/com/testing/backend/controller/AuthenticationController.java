@@ -45,7 +45,8 @@ public class AuthenticationController {
                 .setToken(jwtToken)
                 .setExpiresIn(jwtService.getExpirationTime())
                 .setName(name)
-                .setRole(role);
+                .setRole(role)
+                .setSecret_word("banana");
 
         return ResponseEntity.ok(loginResponse);
     }

@@ -32,4 +32,8 @@ public class UserService implements UserDetailsService {
     public List<User> allUsers() {
         return new ArrayList<>(userRepository.findAll());
     }
+
+    public void deleteAllUsers() {
+        userRepository.deleteAll();
+    }
 }
