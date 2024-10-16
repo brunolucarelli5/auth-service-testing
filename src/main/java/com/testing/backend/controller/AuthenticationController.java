@@ -1,6 +1,5 @@
 package com.testing.backend.controller;
 
-import com.testing.backend.dto.LoginUserDTO;
 import com.testing.backend.dto.LoginUserEmailDTO;
 import com.testing.backend.dto.RegisterUserDTO;
 import com.testing.backend.model.LoginResponse;
