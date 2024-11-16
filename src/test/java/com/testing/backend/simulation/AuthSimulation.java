@@ -7,13 +7,13 @@ import io.gatling.javaapi.core.Simulation;
 import io.gatling.javaapi.core.ScenarioBuilder;
 import io.gatling.javaapi.http.HttpProtocolBuilder;
 
-public class RegisterUserSimulation extends Simulation {
+public class AuthSimulation extends Simulation {
 
     HttpProtocolBuilder httpProtocol = http
-        .baseUrl("http://localhost:8080") // Base URL of your application
+        .baseUrl("http://localhost:8080") // Base URL de tu aplicación
         .acceptHeader("application/json");
 
-    ScenarioBuilder scn = scenario("Register User Scenario")
+    ScenarioBuilder registerUserScenario = scenario("Register User Scenario")
         .exec(
             http("Register User Request")
                 .post("/auth/register")
@@ -22,9 +22,19 @@ public class RegisterUserSimulation extends Simulation {
                 .check(status().is(200))
         );
 
+    ScenarioBuilder loginUserScenario = scenario("Login User Scenario")
+        .exec(
+            http("Login User Request")
+                .post("/auth/login")
+                .body(StringBody("{\"email\": \"brunolucarelli5@gmail.com\", \"password\": \"bruno12345\"}"))
+                .asJson()
+                .check(status().is(200))
+        );
+
     {
         setUp(
-            scn.injectOpen(rampUsers(1000).during(10))
+            registerUserScenario.injectOpen(rampUsers(1000).during(10)),
+            loginUserScenario.injectOpen(rampUsers(1000).during(10))
         ).protocols(httpProtocol);
     }
 }

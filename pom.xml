@@ -150,7 +150,7 @@
 							<goal>test</goal>
 						</goals>
 						<configuration>
-							<simulationClass>com.testing.backend.simulation.RegisterUserSimulation</simulationClass>
+							<simulationClass>com.testing.backend.simulation.AuthSimulation</simulationClass>
 						</configuration>
 					</execution>
 				</executions>

@@ -8,6 +8,7 @@ public class LoginResponse {
     private long expiresIn;
     private String name;
     private String role;
+    private String secret_word;
 
     public String getToken() {
         return token;
@@ -42,6 +43,11 @@ public class LoginResponse {
 
     public LoginResponse setRole(String role) {
         this.role = role;
+        return this;
+    }
+
+    public LoginResponse setSecret_word(String banana) {
+        this.secret_word = banana;
         return this;
     }
 }
