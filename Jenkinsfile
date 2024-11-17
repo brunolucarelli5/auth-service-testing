@@ -2,30 +2,40 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven'  // El nombre de la instalación de Maven en Jenkins
-        jdk 'JDK 21'   // El nombre de la instalación de JDK 21 en Jenkins
+        maven 'Maven'  // Configura Maven en Jenkins
+        jdk 'JDK 21'   // Configura JDK 21 en Jenkins
     }
 
     stages {
-        stage('Checkout') {
+        stage('Run Tests') {
             steps {
-                // Obtiene el código fuente desde tu repositorio
-                git 'https://github.com/brunolucarelli5/auth-service-testing'
+                script {
+                    try {
+                        // Ejecuta los tests con el perfil `test`
+                        sh 'mvn test -Dspring.profiles.active=test'
+                        currentBuild.result = 'SUCCESS'
+                    } catch (Exception e) {
+                        currentBuild.result = 'FAILURE'
+                        throw e // Re-lanza la excepción para que falle el build
+                    }
+                }
             }
         }
+    }
 
-        stage('Build') {
-            steps {
-                // Construye el proyecto con Maven
-                sh 'mvn clean install'
-            }
+    post {
+        success {
+            // Enviar correo si los tests pasan
+            emailext subject: 'Tests exitosos',
+                     body: 'Todos los tests han pasado correctamente.',
+                     to: 'brunolucarelli5@gmail.com'
         }
 
-        stage('Run') {
-            steps {
-                // Ejecuta el proyecto (si es necesario)
-                sh 'java -jar target/auth-service-0.0.1-SNAPSHOT.jar'
-            }
+        failure {
+            // Enviar correo si los tests fallan
+            emailext subject: 'Tests fallidos',
+                     body: 'Algunos tests han fallado. Revisa el log en Jenkins.',
+                     to: 'brunolucarelli5@gmail.com'
         }
     }
 }
