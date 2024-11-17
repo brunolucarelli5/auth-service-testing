@@ -28,14 +28,14 @@ pipeline {
             // Enviar correo si los tests pasan
             emailext subject: 'Tests exitosos',
                      body: 'Todos los tests han pasado correctamente.',
-                     to: 'brunolucarelli5@gmail.com'
+                     to: 'brunolucarelli5@gmail.com, brunolucarelli10@gmail.com'
         }
 
         failure {
             // Enviar correo si los tests fallan
             emailext subject: 'Tests fallidos',
                      body: 'Algunos tests han fallado. Revisa el log en Jenkins.',
-                     to: 'brunolucarelli5@gmail.com'
+                     to: 'brunolucarelli5@gmail.com, brunolucarelli10@gmail.com'
         }
     }
 }
