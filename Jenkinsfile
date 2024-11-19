@@ -27,15 +27,17 @@ pipeline {
         success {
             // Enviar correo si los tests pasan
             emailext subject: 'Tests exitosos',
-                     body: 'Todos los tests han pasado correctamente. Esto se ejecutó luego de haber ejecutado todos los tests programados.',
-                     to: 'brunolucarelli5@gmail.com'
+                     body:
+                     'Todos los tests han pasado correctamente.
+                     Esto se ejecutó luego de haber ejecutado todos los tests programados.',
+                     to: 'brunolucarelli5@gmail.com, ninot2016@gmail.com, ariasnahuel2020@gmail.com'
         }
 
         failure {
             // Enviar correo si los tests fallan
             emailext subject: 'Tests fallidos',
                      body: 'Algunos tests han fallado. Revisa el log en Jenkins.',
-                     to: 'brunolucarelli5@gmail.com'
+                     to: 'brunolucarelli5@gmail.com, ninot2016@gmail.com, ariasnahuel2020@gmail.com'
         }
     }
 }
