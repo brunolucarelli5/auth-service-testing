@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/users")
 @RestController
@@ -38,8 +40,10 @@ public class UserController {
     }
 
     @DeleteMapping("/delete_all")
-    public ResponseEntity<String> deleteAllUsers() {
+    public ResponseEntity<Map<String, String>> deleteAllUsers() {
         userService.deleteAllUsers();
-        return ResponseEntity.ok("All users have been deleted successfully.");
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "All users deleted successfully");
+        return ResponseEntity.ok(response);
     }
 }

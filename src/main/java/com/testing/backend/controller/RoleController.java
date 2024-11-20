@@ -1,7 +1,6 @@
 package com.testing.backend.controller;
 import com.testing.backend.dto.RoleDTO;
 import com.testing.backend.model.Role;
-import com.testing.backend.model.User;
 import com.testing.backend.service.RoleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +21,14 @@ public class RoleController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Role>> allRoles() {
+    public ResponseEntity<Map<String, Object>> allRoles() {
+        Map<String, Object> response = new HashMap<>();
         List<Role> roles = roleService.allRoles();
-
-        return ResponseEntity.ok(roles);
+        int rolesCount = roles.size();
+        String rolesCountString = Integer.toString(rolesCount);
+        response.put("roles", roles);
+        response.put("message",  rolesCountString + " roles retrieved successfully");
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/")
