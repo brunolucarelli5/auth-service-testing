@@ -28,8 +28,7 @@ pipeline {
             // Enviar correo si los tests pasan
             emailext subject: 'Tests exitosos',
                      body:
-                     'Todos los tests han pasado correctamente.
-                     Esto se ejecutó luego de haber ejecutado todos los tests programados.',
+                     'Todos los tests han pasado correctamente. Esto se ejecutó luego de haber ejecutado todos los tests programados.',
                      to: 'brunolucarelli5@gmail.com, ninot2016@gmail.com, ariasnahuel2020@gmail.com'
         }
 
