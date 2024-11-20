@@ -51,7 +51,7 @@ public class AuthenticationController {
                 .setExpiresIn(jwtService.getExpirationTime())
                 .setName(name)
                 .setRole(role)
-                .setSecret_word("banana");
+                .setSecretWord("banana");
 
         return ResponseEntity.ok(loginResponse);
     }

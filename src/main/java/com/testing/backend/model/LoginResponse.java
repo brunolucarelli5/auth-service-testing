@@ -1,14 +1,16 @@
 package com.testing.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.experimental.Accessors;
 
 @Accessors(chain = true)
 public class LoginResponse {
+
     private String token;
     private long expiresIn;
     private String name;
     private String role;
-    private String secret_word;
+    private String secretWord;
 
     public String getToken() {
         return token;
@@ -46,8 +48,13 @@ public class LoginResponse {
         return this;
     }
 
-    public LoginResponse setSecret_word(String banana) {
-        this.secret_word = banana;
+    @JsonProperty("secretWord")
+    public String getSecretWord() {
+        return this.secretWord;
+    }
+
+    public LoginResponse setSecretWord(String secret_word) {
+        this.secretWord = secret_word;
         return this;
     }
 }
